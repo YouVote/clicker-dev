@@ -1,0 +1,4 @@
+/* removes padding that causes unnecessary scroll*/
+.ui-page-footer-fixed{
+	padding-bottom:0px;
+}
