@@ -6,7 +6,7 @@ require.config({ urlArgs: "v=" +  (new Date()).getTime() });
 
 require.config({
 	packages:[
-		{"name":"appcore","location":"../clicker-app/core"},
+		{"name":"appcore","location":config.appCoreBaseAddr}
 	],
 	paths:{
 		"jquery":"https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min",
@@ -15,21 +15,17 @@ require.config({
 		"socketio-server":"https://avalon-gabrielwu84.rhcloud.com/socket.io/socket.io",
 		//"socketio-server":"http://localhost:8080/socket.io/socket.io.js" //dev server
 		"interface":"app-interface",
-		// other external frameworks:
-		// mathjax
-		"config":"config"
 	}
 });
 
 require(['jquery','jquery-mobile'],function(){
-	var appBase = "../clicker-app/";
-	$('head').append('<link rel="stylesheet" type="text/css" href="'+appBase+'jquery/jquery.mobile-1.4.5.min.css">');
-	$('head').append('<link rel="stylesheet" type="text/css" href="'+appBase+'clicker.css">');
+	$('head').append('<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-mobile/1.4.5/jquery.mobile.min.css">');
+	$('head').append('<link rel="stylesheet" type="text/css" href="'+config.appCoreBaseAddr+'clicker.css">');
 	$('head').append('<link rel="stylesheet" type="text/css" href="appview.css">');
 });
 var titleDiv=document.createElement("div");
-require(["appcore","interface","config"],
-function(appCore,interfaceHandler,config){
+require(["appcore","interface"],
+function(appCore,interfaceHandler){
 	var socketURL=config.socketURL;
 	var lessonId=$_GET("lessonid");
 	var playerName=localStorage.getItem("playerName");

@@ -13,9 +13,10 @@ define([],function(){
 			switch(packet.title){
 				case 'studentParams?':
 					socket.relay({'title':'studentParams=','studentName':playerName,'uuid':device.uuid}); 
+					question.initBaseProdUrl(packet.baseUrl);
 					break;
 				case 'execModule':
-					question.execute(packet.modPath,packet.modParams,packet.currAns);
+					question.execute(packet.modName,packet.modParams,packet.currAns);
 					break;
 				case 'qnStatus':
 					break;

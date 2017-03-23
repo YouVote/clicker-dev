@@ -1,11 +1,7 @@
-define([],function(){
-	return {
-		// when in local development
-		modBaseAdd:"../clicker-prod/mods/",
-		// when online
-		// modBaseAdd:"https://gabrielwu84.github.io/clicker-mods/";
-	
-		socketURL:"https://avalon-gabrielwu84.rhcloud.com:8443"
+var config={};
+config.socketURL="https://avalon-gabrielwu84.rhcloud.com:8443"
 
-	}
-})
+config.webCoreBaseAddr="../clicker-web/qcore/";
+config.appCoreBaseAddr="../clicker-app/qcore/";
+
+config.baseProdUrl="../clicker-prod/";

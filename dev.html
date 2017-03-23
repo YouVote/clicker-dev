@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html style="height:100%;width:100%;">
+	<head>
+		<title>YouVote Module Development</title>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<script src="config.js"></script>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"/>
+		<script data-main="web-main" src="require.js"></script>
+		<style>
+			*{
+				padding:0px;margin:0px;
+			}
+			#lessonIdDiv{
+				text-align:center; letter-spacing: 8px; font-size:52px;
+				font-family:'Lucida Sans Typewriter','Lucida Console','Courier New';
+				background-color:#fff;
+				vertical-align: top;
+				display:block;
+			}
+			#clientIframes > iframe{
+				width:100%;
+				height:100%;
+				border:none;
+			}
+			.nav-tabs>li.active>a, 
+			.nav-tabs>li.active>a:focus, 
+			.nav-tabs>li.active>a:hover{
+				background-color:#f9f9f9;
+			}
+		</style>
+		<script type="text/javascript">
+			var socket;
+			var interface;
+			var jsFile="null";
+			var params={};
+			var qnHandler;
+			var lessonId=null;
+		</script>
+	</head>
+	<body style="height:100%;width:100%;display:flex;">
+		<div id="web-col" style="background-color:#fff;height:100%;width:70%;min-width:600px;display:table;">
+			<div style="display:table-row;height:75px;background-color:#f9f9f9;">
+				<div id="lesson" class="input-group input-group-lg" style="padding:14px;border-bottom:solid #999 1px;">
+					<label class="input-group-btn">
+						<button class="btn btn-default dropdown-toggle" type="button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="width:100px;">
+							<span id="modSelected">Module</span>
+							<span class="caret"></span>
+						</button>	
+						<ul class="dropdown-menu" id="modMenu" aria-labelledby="modsMenu">
+						</ul>
+					</label>
+					<input type="text" id="modParams" class="form-control" value="Params" />
+					<span class="input-group-btn">
+						<button id="modRun" class="btn btn-default" type="button"> RUN </button>
+					</span>
+			</div>
+			</div>
+			<div style="font-size:100px;display:table-row;height:auto;">
+				<div style="display:flex;height:100%">
+					<div style="width:270px;">
+						<div id='qnOpts' style="padding:10px;"></div>
+						<div id="studentView" style="background-color:#ddd;display:flex;flex-wrap:wrap;"></div>
+					</div>
+					<div id="qnResp" style=" flex-grow:1; padding:10px;"></div>
+				</div>
+			</div>
+		</div>
+		<div id="app-col" style="background-color:#fff;min-width:360px;width:30%;height:100%;display:table;border-left:solid black 1px;">
+			<div style="display:table-row;height:75px;" >
+				<div id="lessonIdDiv" style="border-bottom: solid #999 1px;"> &nbsp </div>
+			</div>
+			<ul class="nav nav-tabs" style="background-color:#ddd;display:table-row;height:42px;" id="clientNavBar">
+				<li id="clientDelBtn" style="float:right;"><button type="button" class="btn btn-default" style="height:42px;""><span class="glyphicon glyphicon-remove"></span></button></li>
+				<li id="clientAddBtn" style="float:right;"><button type="button" class="btn btn-default" style="height:42px;"><span class="glyphicon glyphicon-plus"></span></button></li>
+			</ul>
+			<div id="clientIframes" style="display:table-row;"></div>
+		</div>
+	</body>
+</html>

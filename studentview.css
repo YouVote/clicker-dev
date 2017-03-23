@@ -6,9 +6,9 @@
     border-width:2px;
     border-style: solid;
     border-color:black;
-    float:left;
     margin:1px;
     background-color:white;
+    float:left;
 }
 .studentIcon.disconnected{
     opacity:0.1;

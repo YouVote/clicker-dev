@@ -1,44 +1,38 @@
-// further refinements to code possible. 
-// to work on it when using this as starting point
-// for authoring interface.
-
 require.config({ urlArgs: "v=" +  (new Date()).getTime() });
 
 require.config({
 	packages:[
-		{"name":"webcore","location":"../clicker-web/core"},
-		{"name":"modindex","location":"../clicker-prod/mods"}
+		{"name":"webcore","location":config.webCoreBaseAddr},
+		{"name":"modindex","location":config.baseProdUrl+"mods/"},
+		{"name":"ctype","location":config.baseProdUrl+"ctype/"},
 	],
 	paths:{
 		"jquery":"https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min",
-		"jquery-mobile":"https://cdnjs.cloudflare.com/ajax/libs/jquery-mobile/1.4.5/jquery.mobile.min",
 		"d3js":"https://cdnjs.cloudflare.com/ajax/libs/d3/4.2.0/d3.min",
 		"socketio-server":"https://avalon-gabrielwu84.rhcloud.com/socket.io/socket.io",
 		"interface":"web-interface",
-		"sandboxweb":"sandbox-host",
-		"sandboxapp":"sandbox-clients",
-		"config":"config"
+		"sandboxhost":"sandbox-host",
+		"sandboxclients":"sandbox-clients",
 	}
 });
-
-require(["webcore","interface","sandboxweb","sandboxapp","config"],
-function(webCore,interface,sandboxweb,sandboxapp,config){
-	var socketURL=config.socketURL;
+require(["webcore","interface","sandboxhost","sandboxclients"],
+function(webCore,interface,sandboxhost,sandboxclients){
 	var interfaceObj=new interface(
 		document.getElementById("lessonIdDiv")
 		);	
-	var sandboxWebObj=new sandboxweb(
-		document.getElementById("mods"),
-		document.getElementById("run"),
-		document.getElementById("params"),
-		document.getElementById("host")
-		);	
-	var sandboxAppObj=new sandboxapp(
-		addBtn=document.getElementById("addclient"),
-		delBtn=document.getElementById("delclient"),
-		clientNav=document.getElementById("clientNav"),
-		clientDiv=document.getElementById("clientIframes")
-		);
+	var sandboxHostObj=new sandboxhost(
+		document.getElementById("modSelected"),
+		document.getElementById("modMenu"),
+		document.getElementById("modParams"),
+		document.getElementById("modRun")
+	)
+	var sandboxClientObj=new sandboxclients(
+		document.getElementById("clientAddBtn"),
+		document.getElementById("clientDelBtn"),
+		document.getElementById("clientNavBar"),
+		document.getElementById("clientIframes")
+	)
+
 	var webCoreObj=new webCore();
 	studentViewObj=new webCoreObj.studentViewEngine(
 		document.getElementById("studentView")
@@ -49,7 +43,7 @@ function(webCore,interface,sandboxweb,sandboxapp,config){
 		studentViewObj.markDisconnected
 		);
 	socket=new webCoreObj.socketHostEngine(
-		socketURL,
+		config.socketURL,
 		interfaceObj.onSocketError,
 		interfaceObj.updateLessonId,
 		interfaceObj.studentJoin,
@@ -62,7 +56,8 @@ function(webCore,interface,sandboxweb,sandboxapp,config){
 		studentModelObj.getStudents
 		);
 	qnHandler.passDivs(
-		document.getElementById("qnStem"),
-		document.getElementById("studAns")
+		document.getElementById("qnOpts"),
+		document.getElementById("qnResp")
 		);
-})
+	qnHandler.execQn("null",null,{});
+});

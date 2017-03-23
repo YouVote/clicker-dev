@@ -21,5 +21,4 @@ define([],function(){
 			qnHandler.procAns(studentUuid,data.data);
 		}
 	}
-
 })

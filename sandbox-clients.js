@@ -3,39 +3,23 @@ define([],function(){
 		// this module also uses lessonId which is not passed explicitly.
 		var currClient=null;
 		var clientArr=[];
-
-		var clientUlTag=document.createElement("ul");
-		clientUlTag.className="ui-grid-d";
-		$(navDiv).html(clientUlTag);
-
-		function numToAlpha(n){
-			return String.fromCharCode(97+n);
-		}		
 		function toggleFocus(newClient){
 			currClient.unfocus()
 			newClient.focus();
 			currClient=newClient;
-		}
-		function reTabClients(startIdx){
-			for(var i=startIdx;i<clientArr.length;i++){
-				clientArr[i].relabelTab(i);
-			}
 		}
 		client=function(){
 			var clientObj=this;
 			var clientLi=document.createElement("li");
 			var clientA=document.createElement("a");
 			var clientIframe=document.createElement("iframe")
-			$(clientA).html("+");
+			$(clientA).html("<span class='glyphicon glyphicon-certificate'></span>");
 			$(clientA).click(function(){
 				toggleFocus(clientObj);
 			})
 			$(clientLi).html(clientA)
-			$(clientUlTag).append(clientLi);
+			$(navDiv).append(clientLi);
 			$(iframesDiv).append(clientIframe);
-
-			clientLi.className="ui-block-"+numToAlpha(clientArr.length%5);
-			clientA.className="ui-btn"
 			clientIframe.src="app.html?lessonid="+lessonId;
 			clientIframe.className="clientframe";
 			clientIframe.onload=function(){
@@ -51,19 +35,16 @@ define([],function(){
 				}
 			}
 			this.focus=function(){
-				$(clientA).addClass('ui-btn-active');
+				$(clientLi).addClass('active');
 				clientIframe.style.display="block";				
 			}
 			this.unfocus=function(){
-				$(clientA).removeClass('ui-btn-active');
+				$(clientLi).removeClass('active');
 				clientIframe.style.display="none";
 			}
 			this.remove=function(){
 				$(clientLi).remove();
 				$(clientIframe).remove()
-			}
-			this.relabelTab=function(newIdx){
-				clientLi.className="ui-block-"+numToAlpha(newIdx%5);
 			}
 		}
 
@@ -89,7 +70,6 @@ define([],function(){
 						currClient=clientArr[idx]
 					}
 					currClient.focus();
-					reTabClients(idx);
 				}
 			}
 		}

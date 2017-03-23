@@ -1,26 +1,30 @@
-define(["modindex","config"],function(modEngine,config){
-	return function(modSelectDropDown,runBtn,paramTextBox,webFrameDom){
-		var modObj=new modEngine()
+define(["modindex"],function(modIdx){
+	//return function(modSelectDropDown,runBtn,paramTextBox,webFrameDom){
+	return function (currMod,modsMenu,modParams,runBtn){
+		var modBaseAddr=config.baseProdUrl+"mods/";
+		var modObj=new modIdx()
 		var modChoices=modObj.availableMods;
-		for(var m in modChoices){
-			var opt=document.createElement("option")
-			opt.innerHTML=modChoices[m];
-			opt.value=modChoices[m];
-			modSelectDropDown.appendChild(opt)
+		
+		// load mod index and put mods into dropdown menu
+		for (var i in modChoices){
+			var opt=document.createElement("li");
+			opt.innerHTML="<a href='#'>"+modChoices[i]+"</a>";
+			$(opt).data('modName',modChoices[i]);
+			opt.onclick=function(){
+				modChoice=$(this).data('modName');
+				currMod.innerHTML=modChoice;
+				require([modBaseAddr+modChoice+".js"],function(mod){
+					var modObj = new mod.authEngine();
+					modParams.value=modObj.templateParams();
+				})
+			}
+			modsMenu.appendChild(opt);
 		}
-		modSelectDropDown.onchange=function(){
-			var modBaseAddr=config.modBaseAdd;
-			var modName=modSelectDropDown.value;
-			if(modName==""){modName="null"}
-			require([modBaseAddr+modName+".js"],function(mod){
-				var modObj = new mod.authEngine();
-				paramTextBox.value=modObj.templateParams();
-			});
-		}
+
 		runBtn.onclick=function(){
-			jsFile=modSelectDropDown.value;
-			if(jsFile==""){jsFile="null"}
-			params=JSON.parse(paramTextBox.value);
+			jsFile=modChoice;
+			if(jsFile==null){jsFile="null"}
+			params=JSON.parse(modParams.value);
 			qnHandler.execQn(jsFile,params,{});
 		}
 	}
