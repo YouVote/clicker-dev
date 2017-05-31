@@ -25,7 +25,7 @@ define(["modindex"],function(modIdx){
 			jsFile=modChoice;
 			if(jsFile==null){jsFile="null"}
 			params=JSON.parse(modParams.value);
-			qnHandler.execQn(jsFile,params,{});
+			youVote.execQn("",jsFile,params,{});
 		}
 	}
 })
