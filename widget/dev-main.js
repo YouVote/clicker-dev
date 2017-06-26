@@ -4,7 +4,7 @@ require.config({
 	packages:[
 		{"name":"modindex","location":config.baseProdUrl+"mods/"},
 		{"name":"ctype","location":config.baseProdUrl+"ctype/"},
-		{"name":"webKernel","location":"../clicker-web/yvWebKernel"},
+		{"name":"webKernel","location":"../../clicker-web/yvWebKernel"},
 	],
 	paths:{
 		"jquery":"https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min",
@@ -41,14 +41,17 @@ function(webKernel,studentViewEngine,sandboxhost,sandboxclients){
 		document.getElementById("qnResp")
 	);
 	youVote.setKernelParam(
-		"connectPass",
-		function(lessonId){
+		"onConnectPass",
+		function(newlessonId){
 			lessonIdDom=document.getElementById("lessonIdDiv");
-			lessonIdDom.innerHTML=lessonId;
+			lessonIdDom.innerHTML=newlessonId;
+			// sandbox-client requires global lessonId variable
+			// to be defined. iron this out on next refactor.
+			lessonId=newlessonId;
 		}
 	);
-	youVote.setKernelParam("yvWebKernelBaseAddr","../clicker-web/yvWebKernel/");
-	youVote.setKernelParam("yvProdBaseAddr","../clicker-prod/");
+	youVote.setKernelParam("yvWebKernelBaseAddr","../../clicker-web/yvWebKernel/");
+	youVote.setKernelParam("yvProdBaseAddr","../../clicker-prod/");
 	youVote.setKernelParam("viewAddStudent",studentViewObj.addStudent);
 	youVote.setKernelParam("viewMarkReconnected",studentViewObj.markReconnected);
 	youVote.setKernelParam("viewMarkDisconnected",studentViewObj.markDisconnected);
