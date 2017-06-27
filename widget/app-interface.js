@@ -12,6 +12,7 @@ define([],function(){
 		this.relayHandler=function(packet){
 			switch(packet.title){
 				case 'studentParams?':
+				console.log(device.uuid)
 					socket.relay({'title':'studentParams=','studentName':playerName,'uuid':device.uuid}); 
 					question.initBaseProdUrl(packet.baseUrl);
 					break;
