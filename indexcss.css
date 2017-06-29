@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css?family=Courgette');
+body, html {
+    height : 100%;
+    margin : 0;
+}
+body {
+	/*min-width : 500px;*/
+
+}
+/*html {
+	height : 100%;
+	background: -moz-linear-gradient(45deg, rgba(204,204,204,1) 0%, rgba(255,255,255,1) 52%, rgba(204,204,204,1) 100%);
+	background: -webkit-gradient(linear, left bottom, right top, color-stop(0%, rgba(204,204,204,1)), color-stop(52%, rgba(255,255,255,1)), color-stop(100%, rgba(204,204,204,1)));
+	background: -webkit-linear-gradient(45deg, rgba(204,204,204,1) 0%, rgba(255,255,255,1) 52%, rgba(204,204,204,1) 100%);
+	background: -o-linear-gradient(45deg, rgba(204,204,204,1) 0%, rgba(255,255,255,1) 52%, rgba(204,204,204,1) 100%);
+	background: -ms-linear-gradient(45deg, rgba(204,204,204,1) 0%, rgba(255,255,255,1) 52%, rgba(204,204,204,1) 100%);
+	background: linear-gradient(45deg, rgba(204,204,204,1) 0%, rgba(255,255,255,1) 52%, rgba(204,204,204,1) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#CCCCCC', endColorstr='#CCCCCC',GradientType=1 );
+}*/
+h1 {
+    top : 5vw;
+    margin-top : 0;
+	text-align: center;
+	font-size : 6vw;
+	text-decoration: underline;
+	color :  #000066;
+	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;	
+	font-family : 'Courgette', sans-serif;
+	font-weight : normal;
+}
+.pictures{
+    position : relative;
+    width : 100%;
+    top : 2vw;
+}
+.image{
+    position : relative;
+    height : 15vw;
+    width : 15vw;
+    border-radius: 50%;
+    box-shadow : 2px 2px 15px;
+    margin-left : 2.15vw;
+    margin-right : 2.15vw;
+}
+.text {
+    position : relative;
+    width : 100%;
+    top : 2vw;
+}
+.text_container{
+    position : relative;
+    width : 16vw;
+    margin-top : 3vw;
+    margin-left : 1.5vw;
+    margin-right : 1.5vw;
+    text-align : center;
+    font-family : "Brush Script Std", "Lucida Calligraphy", "Lucida Handwriting", "Apple Chancery", cursive;
+}
+a{
+	text-decoration : none;
+	font-size : 2vw;
+    color : darkblue;
+    font-weight : bold;
+}
+a:hover{
+	color : #ffa366;
+	font-size : 2.3vw;
+	text-decoration: underline;
+}
+.split {
+    float : left;
+    width : 20%;
+}
+#bg{
+/*    width : 100%;*/
+    height : 100%;
+    display : block;
+    position : relative;
+}
+#bg::before{
+    content : "";
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position : absolute;
+    background-image: url('https://image.shutterstock.com/z/stock-photo-construction-site-silhouette-with-crane-and-scaffolding-809422.jpg');
+/*    background-position : center;*/
+    background-repeat : no-repeat;
+    background-size : cover;
+/*    background-attachment: fixed;*/
+    opacity : 0.3;
+    z-index : -1;
+}
