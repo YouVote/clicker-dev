@@ -2,7 +2,7 @@
 <html style="height:100%;width:100%;">
 	<head>
 		<title>YouVote Widget Development</title>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 		<script src="config.js"></script>
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"/>
@@ -31,10 +31,10 @@
 		</style>
 		<script type="text/javascript">
 			var socket;
-			var interface;
 			var jsFile="null";
 			var params={};
-			var qnHandler;
+			// need to initialize lessonId to null 
+			// for sandbox-client to work correctly.
 			var lessonId=null;
 		</script>
 	</head>

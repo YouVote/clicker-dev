@@ -1,6 +1,8 @@
 define([],function(){
 	return function(addBtn,delBtn,navDiv,iframesDiv){
-		// this module also uses lessonId which is not passed explicitly.
+		// this module uses lessonId from global namespace.
+		// lessonId needs to be initialized to null for 
+		// error checking mechanism to work correctly. 
 		var currClient=null;
 		var clientArr=[];
 		function toggleFocus(newClient){

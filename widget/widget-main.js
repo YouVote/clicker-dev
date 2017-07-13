@@ -2,14 +2,15 @@ require.config({ urlArgs: "v=" +  (new Date()).getTime() });
 
 require.config({
 	packages:[
-		{"name":"modindex","location":config.baseProdUrl+"mods/"},
+		{"name":"webKernel","location":"../../yvWebKernel"},
 		{"name":"ctype","location":config.baseProdUrl+"ctype/"},
-		{"name":"webKernel","location":"../../clicker-web/yvWebKernel"},
+		{"name":"modindex","location":config.baseProdUrl+"mods/"},
 	],
 	paths:{
-		"jquery":"https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min",
-		"d3js":"https://cdnjs.cloudflare.com/ajax/libs/d3/4.2.0/d3.min",
+		"jquery":"https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min",
 		"socketio-server":"https://avalon-gabrielwu84.rhcloud.com/socket.io/socket.io",
+		"d3js":"https://cdnjs.cloudflare.com/ajax/libs/d3/4.2.0/d3.min",
+		"vue":"https://cdnjs.cloudflare.com/ajax/libs/vue/2.3.3/vue",
 		"studentview":"studentview",
 		"sandboxhost":"sandbox-host",
 		"sandboxclients":"sandbox-clients",
@@ -17,8 +18,8 @@ require.config({
 });
 require(["webKernel","studentview","sandboxhost","sandboxclients"],
 function(webKernel,studentViewEngine,sandboxhost,sandboxclients){
-	// still uses youVote from global namespace.
-	// Todo: fix this. 
+	// still uses youVote and lessonId from global namespace.
+	// Todo: fix this by passing youVote into sandboxHostObj/ sandboxClientObj
 	var sandboxHostObj=new sandboxhost(
 		document.getElementById("modSelected"),
 		document.getElementById("modMenu"),
@@ -34,12 +35,9 @@ function(webKernel,studentViewEngine,sandboxhost,sandboxclients){
 
 	studentViewObj=new studentViewEngine(
 		document.getElementById("studentView")
-		);
-	youVote=new webKernel(
-		document.createElement("div"),
-		document.getElementById("qnOpts"),
-		document.getElementById("qnResp")
 	);
+
+	youVote=new webKernel(document.createElement("div"),"#qnOpts","#qnResp","head");
 	youVote.setKernelParam(
 		"onConnectPass",
 		function(newlessonId){

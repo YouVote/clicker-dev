@@ -1,38 +1,28 @@
-// further refinements to code possible. 
-// to work on it when using this as starting point
-// for authoring interface.
-
 require.config({ urlArgs: "v=" +  (new Date()).getTime() });
 
 require.config({
 	packages:[
-		{"name":"appKernel","location":"../../yvAppKernel"}
+		{"name":"appKernel","location":"../../yvAppKernel"},
+		{"name":"ctype","location":"https://youvote.github.io/clicker-prod/ctype/"},
 	],
 	paths:{
 		"jquery":"https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min",
-		//used in playsoc
-		"socketio-server":"https://avalon-gabrielwu84.rhcloud.com/socket.io/socket.io",
-		//"socketio-server":"http://localhost:8080/socket.io/socket.io.js" //dev server
-	}
-});
-
-require(['jquery'],function(){
-	// $('head').append('<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-mobile/1.4.5/jquery.mobile.min.css">');
-	// $('head').append('<link rel="stylesheet" type="text/css" href="'+config.appCoreBaseAddr+'clicker.css">');
-	$('head').append('<link rel="stylesheet" type="text/css" href="appview.css">');
+		"vue":"https://cdnjs.cloudflare.com/ajax/libs/vue/2.3.3/vue",
+	},
 });
 
 require(["appKernel"],function(appKernel){
-	var optDiv=document.getElementById('options');
-	var submitBtn=document.getElementById("submitBtn");
 	var lessonId=$_GET("lessonid");
-	var studentName=localStorage.getItem("playerName");
+	var studentName=$_GET("studentname");
 	var deviceUuid=device.uuid;
-	youVote=new appKernel(lessonId,studentName,deviceUuid);
-	youVote.setKernelParam("optDiv",optDiv);
+	if(studentName==undefined){studentName=deviceUuid;}
+	var widFrame=document.getElementById("widFrame")
+	var submitBtn=document.getElementById("submitBtn")
+	var youVote=new appKernel(lessonId,studentName,deviceUuid);
+	youVote.setKernelParam("widFrame",widFrame);
 	youVote.setKernelParam("submitBtn",submitBtn);
 	youVote.setKernelParam("onConnectFail",function(errmsg){
-		console.log(errmsg);
+		console.log(errmsg)
 	})
 	youVote.connect();
 })
