@@ -1,0 +1,46 @@
+<html>
+	<head>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"/>
+		<script data-main="layout-main" src="require.js"></script>
+		<style>
+			html, body{
+				height:100%;
+				margin:0px;
+			}
+			#lesson-side{
+				height:100%;width:250px;
+				border-right:1px solid #999;
+				border-left:1px solid #999;
+				padding:0;overflow:hidden;
+				background-color:#eee;
+				position: absolute; top:0px;left:0px;
+			}
+			#lesson-main{
+				margin-left:250px; width:auto; height:100%; overflow:hidden;
+			}
+		</style>
+	</head>
+	<body>
+		<section id="lesson-side">
+			<select id="layoutOptions"></select><br/>
+			<button id="runBtn">RUN/REFRESH</button>
+		</section>
+		<section id="lesson-main">
+		<!-- abstracting this start -->				
+			<div style="display:table; table-layout:fixed; width:100%; ">
+				<div style="display:table-column-group; ">
+					<div style="display:table-column; width:100%;"></div>
+					<div style="display:table-column; width:290px;"></div>
+				</div>
+				<div style="display:table-row;">
+					<div id='qnStem' style="display:table-cell;line-height:150%;font-size:20px;"></div>
+					<div id='qnOpts' style="display:table-cell; vertical-align:top;font-size:40px;"></div> 
+				</div>
+			</div>
+			<div id='qnResp' style="display:table-cell;padding-left:20px;"></div>
+		<!-- abstracting this end -->
+		</section>
+	</body>
+</html>

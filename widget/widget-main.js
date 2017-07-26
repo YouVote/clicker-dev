@@ -1,5 +1,8 @@
 require.config({ urlArgs: "v=" +  (new Date()).getTime() });
 
+var config={};
+config.baseProdUrl="../../clicker-prod/";
+
 require.config({
 	packages:[
 		{"name":"webKernel","location":"../../yvWebKernel"},
