@@ -1,5 +1,6 @@
 <html>
 	<head>
+		<title>YouVote Layout Dev</title>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"/>
@@ -24,8 +25,8 @@
 	</head>
 	<body>
 		<section id="lesson-side">
-			<select id="layoutOptions"></select><br/>
-			<button id="runBtn">RUN/REFRESH</button>
+			<select id="layoutOptions" style="font-size:16px;padding:5px;width:238px;margin:8px 5px 2px 5px;"></select><br/>
+			<button id="runBtn" style="font-size:16px;padding:10px;width:238px;margin:3px 5px 10px 5px;">RUN / REFRESH</button>
 		</section>
 		<section id="lesson-main">
 		<!-- abstracting this start -->				
@@ -35,11 +36,11 @@
 					<div style="display:table-column; width:290px;"></div>
 				</div>
 				<div style="display:table-row;">
-					<div id='qnStem' style="display:table-cell;line-height:150%;font-size:20px;"></div>
-					<div id='qnOpts' style="display:table-cell; vertical-align:top;font-size:40px;"></div> 
+					<div id='qnStem'></div>
+					<div id='qnOpts'></div> 
 				</div>
 			</div>
-			<div id='qnResp' style="display:table-cell;padding-left:20px;"></div>
+			<div id='qnResp' style="background-color:#99ffff;"></div>
 		<!-- abstracting this end -->
 		</section>
 	</body>

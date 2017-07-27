@@ -33,13 +33,19 @@ require(["webKernel","layouts"], function(webKernel,layoutIdx){
 		var youVote=new webKernel("#qnStem","#qnOpts","#qnResp","head");
 		youVote.execQn(currQnSpec.qnStem,currQnSpec.modName,currQnSpec.modParams,null);
 		this.execute=function(layoutName){
-			var oldQnStemDom=document.getElementById("qnStem");
-			var oldQnOptsDom=document.getElementById("qnOpts");
-			var oldQnRespDom=document.getElementById("qnResp");
-			$("#lesson-main").load(baseProdUrl+"/"+layoutName+".html",function(){
-				$("#qnStem").replaceWith(oldQnStemDom);
-				$("#qnOpts").replaceWith(oldQnOptsDom);
-				$("#qnResp").replaceWith(oldQnRespDom);
+			var oldQnStemDom=$("#qnStem").html();
+			var oldQnOptsDom=$("#qnOpts").html();
+			var oldQnRespDom=$("#qnResp").html();
+			$("#lesson-main").load(baseProdUrl+"/"+layoutName+".html?"+Math.floor(Math.random()*100)+1 ,function(){
+				$("#qnStem").html(oldQnStemDom);
+				$("#qnOpts").html(oldQnOptsDom);
+				$("#qnResp").html(oldQnRespDom);
+				// does nothing... 
+				$(window).resize(function(){
+					console.log("respDiv resize")
+					console.log($("#qnResp").width());
+					console.log($("#qnResp").height());
+				})
 			})
 		}
 	})();
