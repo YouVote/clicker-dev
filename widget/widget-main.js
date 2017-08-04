@@ -49,6 +49,7 @@ function(webKernel,studentViewEngine,sandboxhost,sandboxclients){
 			// sandbox-client requires global lessonId variable
 			// to be defined. iron this out on next refactor.
 			lessonId=newlessonId;
+			youVote.execQn("","null",{},{});
 		}
 	);
 	youVote.setKernelParam("yvWebKernelBaseAddr","../../clicker-web/yvWebKernel/");
@@ -58,5 +59,5 @@ function(webKernel,studentViewEngine,sandboxhost,sandboxclients){
 	youVote.setKernelParam("viewMarkDisconnected",studentViewObj.markDisconnected);
 	youVote.setKernelParam("viewMarkAnswered",studentViewObj.markAnswered);
 	youVote.setKernelParam("viewRestorePrevAnswered",studentViewObj.resetAnswered);
-	youVote.execQn("","null",null,{});
+	youVote.connect();
 });

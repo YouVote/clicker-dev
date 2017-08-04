@@ -5,6 +5,8 @@ define(["modindex"],function(modIdx){
 		var modObj=new modIdx()
 		var modChoices=modObj.availableMods;
 		
+		// get and put params into url here
+		
 		// load mod index and put mods into dropdown menu
 		for (var i in modChoices){
 			var opt=document.createElement("li");
