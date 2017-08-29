@@ -16,8 +16,8 @@ define(["modindex"],function(modIdx){
 				modChoice=$(this).data('modName');
 				currMod.innerHTML=modChoice;
 				require([modBaseAddr+modChoice+".js"],function(mod){
-					var modObj = new mod.authEngine();
-					modParams.value=modObj.templateParams();
+					var modObj = new mod.author();
+					modParams.value=modObj.coreTemplate;
 				})
 			}
 			modsMenu.appendChild(opt);
