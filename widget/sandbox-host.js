@@ -47,7 +47,8 @@ define(["modindex"],function(modIdx){
 				try{
 					params=JSON.parse(paramString);
 					// need to change index.html here if file name is changed. 
-					// Todo: find a more robust solution.
+					// Todo: find a more robust solution - check if can get file part of url
+					// from url object.
 					history.pushState({},"", "index.html?m="+jsFile+"&p="+encodeURIComponent(paramString));
 					youVote.execQn("",jsFile,params,{});
 				}catch(e){
