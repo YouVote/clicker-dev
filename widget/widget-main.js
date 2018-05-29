@@ -7,6 +7,7 @@ require.config({
 	packages:[
 		{"name":"webKernel","location":"../../yvWebKernel"},
 		{"name":"ctype","location":config.baseProdUrl+"ctype/"},
+		{"name":"async","location":config.baseProdUrl+"async/"},
 		{"name":"modindex","location":config.baseProdUrl+"mods/"},
 	],
 	paths:{
