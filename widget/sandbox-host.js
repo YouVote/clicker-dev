@@ -14,8 +14,15 @@ define(["modindex"],function(modIdx){
 				modChoice=$(this).data('modName');
 				currMod.innerHTML=modChoice;
 				require([modBaseAddr+modChoice+".js"],function(mod){
-					var modObj = new mod.author();
-					modParams.value=modObj.coreTemplate;
+					// mods may not have implemented author method
+					if(typeof(mod.author)=="function"){
+						var modObj = new mod.author();
+						// may need to handle possibility that author defined, but coreTemplate is not. 
+						modParams.value=modObj.coreTemplate;
+					}else{
+						modParams.value="";
+						console.warn(modChoice+" did not implement the author method.\nYou are on your own about what parameters to use.");
+					}
 				})
 			}
 			modsMenu.appendChild(opt);
@@ -52,7 +59,7 @@ define(["modindex"],function(modIdx){
 					history.pushState({},"", "index.html?m="+jsFile+"&p="+encodeURIComponent(paramString));
 					youVote.execQn("",jsFile,params,{});
 				}catch(e){
-					console.error("params string not json format")
+					console.warn("params string not json format")
 				}
 			}
 		}
