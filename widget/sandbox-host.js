@@ -15,13 +15,18 @@ define(["modindex"],function(modIdx){
 				currMod.innerHTML=modChoice;
 				require([modBaseAddr+modChoice+".js"],function(mod){
 					// mods may not have implemented author method
-					if(typeof(mod.author)=="function"){
-						var modObj = new mod.author();
-						// may need to handle possibility that author defined, but coreTemplate is not. 
-						modParams.value=modObj.coreTemplate;
+					if(typeof(mod)=="object"){
+						if(typeof(mod.author)=="function"){
+							var modObj = new mod.author();
+							// may need to handle possibility that author defined, but coreTemplate is not. 
+							modParams.value=modObj.coreTemplate;
+						}else{
+							modParams.value="";
+							console.warn(modChoice+" did not implement the author method.\nYou are on your own about what parameters to use.");
+						}
 					}else{
 						modParams.value="";
-						console.warn(modChoice+" did not implement the author method.\nYou are on your own about what parameters to use.");
+						console.warn(modChoice+" is not a properly defined object");
 					}
 				})
 			}
