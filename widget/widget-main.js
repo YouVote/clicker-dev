@@ -42,7 +42,7 @@ function(webKernel,studentViewEngine,sandboxhost,sandboxclients){
 		document.getElementById("studentView")
 	);
 
-	youVote=new webKernel(document.createElement("div"),"#qnOpts","#qnResp","head");
+	youVote=new webKernel(document.createElement("div"),"#qnOpts","#respDiv","#respGhost","head");
 	youVote.setKernelParam(
 		"onConnectPass",
 		function(newlessonId){
