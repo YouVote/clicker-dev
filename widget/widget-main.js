@@ -19,6 +19,7 @@ require.config({
 		"studentview":"studentview",
 		"sandboxhost":"sandbox-host",
 		"sandboxclients":"sandbox-clients",
+		"qneditor":"qneditor", // Todo: move modEditor into yvAuthKernel 
 	}
 });
 require(["webKernel","studentview","sandboxhost","sandboxclients"],
