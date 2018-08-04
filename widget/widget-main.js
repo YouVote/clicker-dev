@@ -6,9 +6,10 @@ config.baseProdUrl="../../clicker-prod/";
 require.config({
 	packages:[
 		{"name":"webKernel","location":"../../yvWebKernel"},
+		{"name":"authKernel","location":"../../yvAuthKernel"},
 		{"name":"ctype","location":config.baseProdUrl+"ctype/"},
 		{"name":"async","location":config.baseProdUrl+"async/"},
-		{"name":"modindex","location":config.baseProdUrl+"mods/"},
+		{"name":"modindex","location":config.baseProdUrl+"mods/"} // needed by authKernel
 	],
 	paths:{
 		"jquery":"https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min",

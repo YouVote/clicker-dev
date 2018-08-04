@@ -1,13 +1,13 @@
 // shared with clicker-lite/lite-main.js
 // Todo: refactor the two into a yvAuthKernel. 
-define(["modindex","qneditor"],function(modIdx,qnEditEngine){
+define(["modindex","authKernel"],function(modIdx,authKernel){
 	//return function(modSelectDropDown,runBtn,paramTextBox,webFrameDom){
 	return function (currMod,modsMenu,modParamsDom,runBtn){
 		var modBaseAddr=config.baseProdUrl+"mods/";
 		var modObj=new modIdx()
 		var modChoices=modObj.availableMods;
 
-		var modEditor=new qnEditEngine(
+		var modEditor=new authKernel(
 			document.createElement("input"),
 			currMod,modsMenu,modParamsDom
 		)
